@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css'; // Import your custom CSS file
 
 function App() {
+  const [rfqLocation,] = useState("");
+  const [customerPartNumber,] = useState("");
+  const [annualQuantity,] = useState("");
+  const [drawingNumber,] = useState("");
+  const [itemDescription,] = useState("");
+  const [material,] = useState("");
+  const [coating,] = useState("");
+  const [vendorSelection,] = useState([]);
+  const [supplierName,] = useState("");
+  const [countryOfOrigin,] = useState("");
+  const [shippingCountry,] = useState("");
+  const [pricePer1000,] = useState("");
+  const [weightPer1000,] = useState("");
+  const [toolingCost,] = useState("");
+  const [ppapCost,] = useState("");
+  const [toolingCostRefund,] = useState("");
+  const [deliveryTerm,] = useState("");
+  const [qualityPpm,] = useState("");
+  const [ppapLeadTime,] = useState("");
+  const [minOrderQuantity,] = useState("");
+  const [deviation,] = useState("");
+  const [file,] = useState(null);
+  const [date,] = useState(new Date().toISOString().split('T')[0]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(rfqLocation,  customerPartNumber, annualQuantity, drawingNumber, itemDescription, material, coating, vendorSelection, supplierName, countryOfOrigin, shippingCountry, pricePer1000, weightPer1000, toolingCost, ppapCost, toolingCostRefund, deliveryTerm, qualityPpm, ppapLeadTime, minOrderQuantity, deviation, file, date)
+    if (!rfqLocation || !customerPartNumber || !annualQuantity || !drawingNumber || !itemDescription || !material || !coating || vendorSelection.length === 0 || !supplierName || !countryOfOrigin || !shippingCountry || !pricePer1000 || !weightPer1000 || !toolingCost || !ppapCost || !toolingCostRefund || !deliveryTerm || !qualityPpm || !ppapLeadTime || !minOrderQuantity || !deviation || !file || !date) {
+      alert("Please fill out all fields and upload a file.");
+    }
+  };
+
   return (
-    <div className="container">
+    <form onSubmit={handleSubmit}>
+      <div className="container">
       <img src="autofastener.jpg" alt="Autofastener" className="header-image" />
       
       <section>
@@ -47,12 +80,12 @@ function App() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="vendor-selection">Vendor Select</label>
+          <label htmlFor="vendor-selection">Vendor Selection</label>
           <select id="vendor-selection" className="form-control" multiple>
-            <option value="Norm">Norm</option>
-            <option value="Boltun">Boltun</option>
-            <option value="Araymond">Araymond</option>
-            <option value="ITW">ITW</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+            <option value="T">T</option>
           </select>
         </div>
       </section>
@@ -151,6 +184,7 @@ function App() {
         <button type="submit" id="action" className="btn btn-success">Send</button>
       </section>
     </div>
+    </form>
   );
 }
 
