@@ -1,7 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css'; // Import your custom CSS file
+import axios from 'axios';
+
+
+
+
 
 function App() {
+
+  const api = 'https://rfq.github.rocks:65000/send';
+
+ const handleSubmit = async () => {
+    try {
+      const response = await axios.post(api, {rfq, partNo, annualQuan});
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+ }
+
+  const [rfq, setRfq] = useState('');
+
+  const [partNo, setPartNo] = useState('');
+
+  const [annualQuan,setAnnualQuan] = useState('');
+
+
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const handleRFTChange = (e) => {
+    setRfq(e.target.value);
+  };
+
+  const handlePartNoChange = (e) => {
+    setPartNo(e.target.value);
+  };
+
+  const handleAnnualQuanChange = (e) => {
+    setAnnualQuan(e.target.value);
+  };
+
   return (
     <div className="container">
       <img src="autofastener.jpg" alt="Autofastener" className="header-image" />
@@ -10,22 +47,31 @@ function App() {
         <h2>Customer Section</h2>
         <div className="form-group">
           <label htmlFor="rfq-location">RFQ Location</label>
-          <select id="rfq-location" className="form-control">
+          <select id="rfq-location" className="form-control" onSelect={handleRFTChange}>
             <option value="France">France</option>
             <option value="Turkey">Turkey</option>
           </select>
         </div>
 
+
+
+
         <div className="form-group">
           <label htmlFor="customer-part-number">Customer Part Number</label>
-          <input type="text" id="customer-part-number" className="form-control" />
+          <input type="text" id="customer-part-number" className="form-control" onChange={handlePartNoChange}/>
         </div>
+
+
 
         <div className="form-group">
           <label htmlFor="annual-quantity">Annual Quantity</label>
-          <input type="text" id="annual-quantity" className="form-control" />
+          <input type="text" id="annual-quantity" className="form-control" onChange={handleAnnualQuanChange}/>
         </div>
 
+
+        <button onClick={handleSubmit}>Send</button>
+
+      {/*}
         <div className="form-group">
           <label htmlFor="drawing-number">Drawing Number</label>
           <input type="text" id="drawing-number" className="form-control" />
@@ -54,13 +100,13 @@ function App() {
             <option value="Araymond">Araymond</option>
             <option value="ITW">ITW</option>
           </select>
-        </div>
+        </div> */}
       </section>
 
       <hr /> {/* Horizontal line to separate sections */}
 
       <section>
-        <h2>Supplier Section</h2>
+        {/* <h2>Supplier Section</h2>
         <div className="form-group">
           <label htmlFor="supplier-name">Supplier-Vendor Name</label>
           <input type="text" id="supplier-name" className="form-control" />
@@ -148,7 +194,7 @@ function App() {
 
       <section>
         <h3 style={{ color: 'green' }}>Click to Send your Offer</h3>
-        <button type="submit" id="action" className="btn btn-success">Send</button>
+        <button type="submit" id="action" className="btn btn-success">Send</button> */}
       </section>
     </div>
   );
