@@ -3,6 +3,12 @@ import './App.css'; // Import your custom CSS file
 import axios from 'axios';
 
 
+// 1. Create useState
+// 2. Create event handlers (handleChange)
+// 3. Add event listeners (onChange) to the input fields
+// 4. Add state to axios post
+
+
 
 
 
@@ -12,22 +18,22 @@ function App() {
 
  const handleSubmit = async () => {
     try {
-      const response = await axios.post(api, {rfq, partNo, annualQuan});
+      const response = await axios.post(api, {rfq, partNo, annualQuan });
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
  }
 
-  const [rfq, setRfq] = useState('');
+  const [rfq, setRfq] = useState(''); 
 
   const [partNo, setPartNo] = useState('');
 
   const [annualQuan,setAnnualQuan] = useState('');
 
 
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-  const handleRFTChange = (e) => {
+  // const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const handleRFTSelect = (e) => {
     setRfq(e.target.value);
   };
 
@@ -47,7 +53,7 @@ function App() {
         <h2>Customer Section</h2>
         <div className="form-group">
           <label htmlFor="rfq-location">RFQ Location</label>
-          <select id="rfq-location" className="form-control" onSelect={handleRFTChange}>
+          <select id="rfq-location" className="form-control" onSelect={handleRFTSelect}>
             <option value="France">France</option>
             <option value="Turkey">Turkey</option>
           </select>
