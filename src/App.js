@@ -18,12 +18,14 @@ function App() {
 
  const handleSubmit = async () => {
     try {
-      const response = await axios.post(api, {rfq, partNo, annualQuan, drawing, itemdesc, material, coating, vendorselection, suppliername, country, shipping, price, weight, tooling, ppapcost, toolingrefund, deliveryterm, ppm, leadtime, moq, deviation});
+      const response = await axios.post(api, {rfq, partNo, annualQuan, drawing, itemdesc, material, coating, vendorselection, suppliername, country, shipping, price, weight, tooling, ppapcost, toolingrefund, deliveryterm, ppm, leadtime, moq, deviation, qnumber});
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
  }
+
+ const [qnumber,setqnumber] = useState('');
 
   const [rfq, setRfq] = useState(''); 
 
@@ -71,6 +73,11 @@ function App() {
 
 
   // const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  
+  const handleqnumberChange = (e) => {
+    setqnumber(e.target.value);
+  };
+  
   const handleRFTSelect = (e) => {
     setRfq(e.target.value);
   };
@@ -163,6 +170,12 @@ function App() {
       
       <section>
         <h2>Customer Section</h2>
+
+        <div className="form-group">
+          <label htmlFor="RFQ-number">RFQ Number</label>
+          <input type="text" id="RFQ-number" className="form-control" onChange={handleqnumberChange}/>
+        </div>
+
         <div className="form-group">
           <label htmlFor="rfq-location">RFQ Location</label>
           <select id="rfq-location" className="form-control" onSelect={handleRFTSelect}>
@@ -212,6 +225,8 @@ function App() {
         </div>
 
         <hr /> {/* Horizontal line to separate sections */}
+
+        <h2>Supplier Section</h2>
 
         <div className="form-group">
           <label htmlFor="supplier-name">Supplier-Vendor Name</label>
