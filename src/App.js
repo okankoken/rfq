@@ -217,10 +217,10 @@ function App() {
         <div className="form-group">
           <label htmlFor="vendor-selection">Vendor Selection</label>
           <select id="vendor-selection" className="form-control" onSelect={handlevendorselectionSelect}>
-            <option value="Norm">Norm</option>
-            <option value="Boltun">Boltun</option>
-            <option value="Araymond">Araymond</option>
-            <option value="ITW">ITW</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+            <option value="T">T</option>
           </select>
         </div>
 
@@ -271,7 +271,7 @@ function App() {
         <div className="form-group">
           <label htmlFor="delivery-term">Delivery Term</label>
           <select id="delivery-term" className="form-control" onSelect={handledeliverytermSelect}>
-            <option value="Ex Works">Ex Works</option>
+            <option value="Ex Works">EXW</option>
             <option value="FCA">FCA</option>
             <option value="FOB">FOB</option>
             <option value="DAP">DAP</option>
